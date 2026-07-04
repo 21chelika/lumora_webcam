@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth | Lumora</title>
+    <link rel="stylesheet" href="camera.css">
+</head>
+<body>
+
+    <!-- Navbar (Sama dengan halaman lainnya) -->
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">LUMORA</a></div>
+        <ul class="nav-links">
+            <li><a href="artist.html">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="privacy.html">privacy policy</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" placeholder="search">
+            <span>⌕</span>
+        </div>
+    </nav>
+
+    <!-- Content Photobooth -->
+<main class="photobooth-container">
+    <a href="artist.html" id="camera-back-arrow" class="camera-back-arrow" aria-label="Back to selected artist">←</a>
+
+    <div class="camera-wrapper">
+        <video id="video" autoplay playsinline></video>
+        <div id="timer" class="timer"></div>
+        <canvas id="canvas" style="display:none;"></canvas>
+    </div>
+
+    <div class="controls">
+        <button id="capture-btn" class="capture-btn">Capture ✨</button>
+        <button id="next-btn" class="next-btn" style="display:none;">Next Page →</button>
+    </div>
+
+    <div class="gallery-container">
+        <h3>Your Shots (<span id="count">0</span>/10)</h3>
+        <div id="photo-gallery" class="photo-gallery">
+            </div>
+    </div>
+</main>
+
+    <script src="camera.js"></script>
+</body>
+</html>

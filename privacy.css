@@ -1,0 +1,181 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#FFF7E6;
+    color:#2D3A47;
+}
+
+/* NAVBAR */
+
+/* ==========================
+NAVBAR (Sama persis dengan Privacy)
+========================== */
+
+.navbar {
+    width: 95%;
+    /* max-width dihapus agar lebarnya memanjang sama seperti Privacy */
+    height: 75px; 
+    background: rgba(255, 255, 255, 0.45);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    margin: 25px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.logo a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 700; /* Ketebalan font disamakan dengan Privacy */
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 50px; /* Jarak antar menu dilebarkan lagi */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 600;
+    font-size: 16px; /* Font size dibesarkan sama seperti Privacy */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #D98C99;
+}
+
+/* Menu aktif berubah warna hijau, TANPA garis bawah */
+.nav-links a.active {
+    color: #A8B58A;
+}
+
+.search-box {
+    width: 250px; /* Ukuran search box dibesarkan lagi */
+    height: 40px;
+    background: #F7C8D3;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #B46A72;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #B46A72;
+    opacity: 0.6;
+}
+
+.search-box span {
+    color: #B46A72;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-top:70px;
+}
+
+.warning-box{
+    display:inline-block;
+    background:#F7C8D3;
+    color:#B46A72;
+    padding:16px 30px;
+    border-radius:999px;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:64px;
+    color:#B46A72;
+}
+
+.hero span{
+    color:#A8B58A;
+}
+
+.subtitle{
+    margin-top:15px;
+    font-size:22px;
+    color:#A8B58A;
+}
+
+.updated{
+    margin-top:18px;
+    color:#999;
+}
+
+/* CARDS */
+
+.policy-container{
+    width:85%;
+    margin:70px auto;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.policy-card{
+    background:rgba(255,255,255,.5);
+    border-radius:35px;
+    padding:40px;
+}
+
+.policy-card h2{
+    color:#B46A72;
+    margin-bottom:15px;
+}
+
+.policy-card p{
+    line-height:1.8;
+}
+
+.policy-card ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.mini-warning{
+    margin-top:20px;
+    background:#FFF0F2;
+    color:#B46A72;
+    padding:15px;
+    border-radius:20px;
+}
+
+.quote-box{
+    margin-top:20px;
+    background:#F7C8D3;
+    padding:15px;
+    border-radius:20px;
+    color:#B46A72;
+    font-weight:600;
+}

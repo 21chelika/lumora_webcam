@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Photos | Lumora</title>
+    <link rel="stylesheet" href="poster.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">LUMORA</a></div>
+        <ul class="nav-links">
+            <li><a href="artist.html">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="privacy.html">privacy policy</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" placeholder="search">
+            <span>⌕</span>
+        </div>
+    </nav>
+
+    <main class="poster-page">
+        <p class="poster-kicker" id="poster-kicker">Selected Frame</p>
+        <h1 id="poster-title">Choose 6 Photos</h1>
+
+        <section id="poster-grid" class="poster-grid" aria-label="Choose six photos"></section>
+
+        <div class="poster-actions">
+            <a id="back-btn" class="back-btn" href="camera.html">Back</a>
+            <button id="create-btn" class="create-btn" type="button" disabled>Create Frame (0/6)</button>
+        </div>
+    </main>
+
+    <script src="poster.js"></script>
+</body>
+</html>

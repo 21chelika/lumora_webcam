@@ -1,0 +1,491 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #FFF7E6;
+    color: #2D3A47;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+/* ==========================
+NAVBAR
+========================== */
+
+/* ==========================
+NAVBAR (Sama persis dengan Privacy)
+========================== */
+
+.navbar {
+    width: 95%;
+    /* max-width dihapus agar lebarnya memanjang sama seperti Privacy */
+    height: 75px; 
+    background: rgba(255, 255, 255, 0.45);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    margin: 25px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.logo a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 700; /* Ketebalan font disamakan dengan Privacy */
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 50px; /* Jarak antar menu dilebarkan lagi */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 600;
+    font-size: 16px; /* Font size dibesarkan sama seperti Privacy */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #D98C99;
+}
+
+/* Menu aktif berubah warna hijau, TANPA garis bawah */
+.nav-links a.active {
+    color: #A8B58A;
+}
+
+.search-box {
+    width: 250px; /* Ukuran search box dibesarkan lagi */
+    height: 40px;
+    background: #F7C8D3;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #B46A72;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #B46A72;
+    opacity: 0.6;
+}
+
+.search-box span {
+    color: #B46A72;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* HERO (Sudah diperbaiki, tidak ada typo + lagi) */
+.hero {
+    width: 90%;
+    max-width: 1000px;
+    margin: 100px auto 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sparkle {
+    color: #F7C8D3;
+    font-size: 48px;
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.hero h1 {
+    font-size: 56px;
+    color: #B46A72;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    color: #A8B58A;
+    font-size: 20px;
+    font-weight: 500;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* INTRO */
+.intro-card {
+    width: 85%;
+    max-width: 900px;
+    margin: 40px auto 80px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(180, 106, 114, 0.06);
+}
+
+.intro-card h2 {
+    color: #B46A72;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.intro-card p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #5E5E5E;
+    margin-bottom: 15px;
+}
+
+/* PRICE */
+/* PRICE */
+.price-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 70px;
+    width: 90%;
+    max-width: 850px;
+}
+
+.price-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    flex-wrap: wrap; /* Supaya turun ke bawah kalau di HP */
+}
+
+.price-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    background: #F7C8D3;
+    border-radius: 30px;
+    padding: 40px 35px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(180, 106, 114, 0.12);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative; /* Untuk posisi badge */
+}
+
+.price-card.popular {
+    border: 3px solid #FFF0F2;
+    background: #fbd6df;
+}
+
+.price-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(180, 106, 114, 0.2);
+}
+
+.price-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #A8B58A;
+    color: white;
+    padding: 6px 20px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(168, 181, 138, 0.3);
+}
+
+.price-card h2 {
+    margin-top: 10px;
+    color: #B46A72;
+    font-size: 24px;
+}
+
+.duration {
+    margin-top: 6px;
+    font-size: 15px;
+    color: #5E5E5E;
+}
+
+.price {
+    font-size: 42px;
+    color: #B46A72;
+    font-weight: 800;
+    margin-top: 20px;
+    line-height: 1;
+}
+
+.small-text {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6C6C6C;
+}
+
+.included {
+    margin-top: 25px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 20px;
+    border-radius: 18px;
+}
+
+.included h3 {
+    color: #B46A72;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.included ul {
+    list-style: none;
+    padding: 0;
+}
+
+.included li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: #2D3A47;
+    font-weight: 500;
+}
+
+/* ADD-ON BOX */
+.addon-box {
+    margin-top: 35px;
+    width: 100%;
+    max-width: 790px; /* Sesuai dengan lebar 2 kartu digabung */
+    background: white;
+    border: 2px dashed #D98C99;
+    border-radius: 20px;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease;
+}
+
+.addon-box:hover {
+    transform: translateY(-3px);
+}
+
+.addon-content {
+    text-align: left;
+}
+
+.addon-content h3 {
+    color: #B46A72;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.addon-content p {
+    font-size: 14px;
+    color: #5E5E5E;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.addon-price {
+    background: #D98C99;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 18px;
+    white-space: nowrap; /* Biar harganya nggak turun ke baris baru */
+    box-shadow: 0 5px 15px rgba(217, 140, 153, 0.3);
+}
+
+/* Media Query untuk ukuran layar kecil (HP) */
+@media (max-width: 768px) {
+    .addon-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    .addon-content {
+        text-align: center;
+    }
+}
+/* GUIDELINES */
+.guideline-section {
+    width: 90%;
+    max-width: 1000px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.guideline-section h2 {
+    color: #B46A72;
+    font-size: 36px;
+}
+
+.guide-subtitle {
+    margin: 15px 0 40px;
+    font-size: 18px;
+    color: #5E5E5E;
+}
+
+.guideline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.guide-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 20px;
+    font-weight: 600;
+    color: #2D3A47;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-5px);
+}
+
+.warning-box {
+    margin-top: 40px;
+    background: #FFF0F2;
+    color: #B46A72;
+    padding: 20px;
+    border-radius: 15px;
+    font-weight: 500;
+    border: 1px solid rgba(180, 106, 114, 0.2);
+}
+
+/* CONTACT */
+.contact-section {
+    width: 90%;
+    max-width: 800px;
+    margin: 100px auto 80px;
+    text-align: center;
+}
+
+.contact-section h2 {
+    color: #B46A72;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #5E5E5E;
+    margin: 0 auto 30px;
+}
+
+/* INSTAGRAM BUTTON */
+.instagram-box {
+    margin: 0 auto;
+    width: 300px;
+    height: 70px;
+    background: #D98C99;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0 12px 30px rgba(180, 106, 114, 0.2);
+    transition: all 0.3s ease;
+}
+
+.instagram-box img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.instagram-box:hover {
+    transform: translateY(-5px);
+    background: #cf7f8d;
+    box-shadow: 0 18px 35px rgba(180, 106, 114, 0.3);
+}
+
+/* QUESTIONS */
+.question-section {
+    text-align: center;
+    margin: 0 auto 100px;
+    max-width: 900px;
+}
+
+.question-section h2 {
+    color: #B46A72;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.question-section p {
+    font-size: 18px;
+    color: #5E5E5E;
+}
+
+.question-list {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.question-list span {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #B46A72;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, background 0.3s ease;
+    cursor: default;
+}
+
+.question-list span:hover {
+    transform: translateY(-5px);
+    background: #FFF0F2;
+}
+
+.ending-text {
+    margin-top: 50px;
+    color: #A8B58A !important;
+    font-weight: 700;
+    font-size: 24px !important;
+}
+
+/* Animasi simpel untuk sparkle */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}

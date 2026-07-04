@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #FFF7E6;
+    color: #2D3A47;
+    overflow-x: hidden;
+}
+
+/* ==========================
+NAVBAR
+========================== */
+.navbar {
+    width: 95%;
+    height: 75px;
+    background: rgba(255, 255, 255, 0.45);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    margin: 25px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.logo a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 50px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #D98C99;
+}
+
+.nav-links a.active {
+    color: #A8B58A;
+}
+
+.search-box {
+    width: 250px;
+    height: 40px;
+    background: #F7C8D3;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #B46A72;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #B46A72;
+    opacity: 0.6;
+}
+
+.search-box span {
+    color: #B46A72;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ==========================
+DETAIL PAGE LAYOUT
+========================== */
+.detail-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto 80px;
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 0;
+    left: -72px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    color: #B46A72;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(180, 106, 114, 0.12);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.back-arrow:hover {
+    background: #F7C8D3;
+    transform: translateX(-4px);
+}
+
+/* Kolom Kiri */
+.artist-info {
+    flex: 1; /* Proporsi lebar kiri */
+    max-width: 400px;
+    position: sticky; /* Biar tetap kelihatan saat frame kanan di-scroll */
+    top: 50px;
+}
+
+.artist-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #B46A72;
+    letter-spacing: 0.5px;
+}
+
+.group-name {
+    font-size: 32px;
+    font-weight: 800;
+    color: #B46A72;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.artist-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Bentuk persegi panjang mendatar */
+    background: #E5E7E1;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.artist-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Kolom Kanan */
+.frame-gallery {
+    flex: 1.8; /* Proporsi lebar kanan (lebih besar) */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Kotak ke samping */
+    gap: 20px;
+    
+    /* Pengaturan Scrollbar persis desain */
+    max-height: 600px; 
+    overflow-y: auto;
+    padding-right: 20px; 
+}
+
+/* Kustomisasi Scrollbar */
+.frame-gallery::-webkit-scrollbar {
+    width: 10px;
+}
+
+.frame-gallery::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.frame-gallery::-webkit-scrollbar-thumb {
+    background: #EAEBE6;
+    border-radius: 999px;
+}
+
+.frame-gallery::-webkit-scrollbar-thumb:hover {
+    background: #d1d4cb;
+}
+
+/* Frame Items */
+.frame-item {
+    aspect-ratio: 3 / 4; /* Bentuk memanjang ke bawah khas photobooth */
+    background: #E5E7E1;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.frame-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.frame-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(180, 106, 114, 0.15);
+}
+
+/* Responsive (Untuk layar HP / Tablet) */
+@media (max-width: 900px) {
+    .detail-container {
+        flex-direction: column;
+    }
+
+    .back-arrow {
+        position: static;
+        margin-bottom: 8px;
+    }
+    
+    .artist-info {
+        max-width: 100%;
+        position: static;
+    }
+
+    .frame-gallery {
+        max-height: auto; /* Mematikan scroll internal di HP */
+        overflow-y: visible;
+        padding-right: 0;
+        grid-template-columns: repeat(2, 1fr); /* Jadi 2 kotak di HP */
+    }
+}
