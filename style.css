@@ -346,6 +346,25 @@ DECORATIONS
     font-size:15px;
 }
 
+.coming-info{
+    margin-top:28px;
+    text-align:center;
+    color:#7A6A6A;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.coming-info a{
+    color:#B46A72;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.coming-info a:hover{
+    color:#A8B58A;
+}
+
 /* ==========================
 ANIMATION
 ========================== */
