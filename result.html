@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Frame | Lumora</title>
     <link rel="stylesheet" href="result.css">
+    <link rel="stylesheet" href="responsive-navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -12,7 +13,7 @@
     <nav class="navbar">
         <div class="logo"><a href="index.html">LUMORA</a></div>
         <ul class="nav-links">
-            <li><a href="artist.html">home</a></li>
+            <li><a href="collections.html">home</a></li>
             <li><a href="about.html">about</a></li>
             <li><a href="privacy.html">privacy policy</a></li>
             <li><a href="contact.html">contact</a></li>
@@ -23,14 +24,18 @@
         </div>
     </nav>
 
-    <main class="result-page">
+<main class="result-page">
         <section class="frame-stage" aria-label="Final frame">
+            <!-- 1. Lapisan foto ditaruh duluan di belakang -->
             <div id="photo-layer" class="photo-layer"></div>
+            
+            <!-- 2. Lapisan frame PNG ditaruh di bawahnya agar tampil menimpa foto -->
             <img id="frame-overlay" class="frame-overlay" src="" alt="">
         </section>
 
         <div class="result-actions">
             <a class="back-btn" href="poster.html">Back</a>
+            <button id="download-btn" class="download-btn" type="button">Download</button>
         </div>
     </main>
 

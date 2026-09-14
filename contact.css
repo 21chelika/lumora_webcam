@@ -22,19 +22,18 @@ NAVBAR (Sama persis dengan Privacy)
 
 .navbar {
     width: 95%;
-    /* max-width dihapus agar lebarnya memanjang sama seperti Privacy */
-    height: 75px; 
+    min-height: 75px;
     background: rgba(255, 255, 255, 0.45);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 50px;
     margin: 25px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 35px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 12px 30px rgba(180, 106, 114, 0.08);
 }
 
 .logo a {
@@ -322,13 +321,101 @@ NAVBAR (Sama persis dengan Privacy)
 }
 
 /* Media Query untuk ukuran layar kecil (HP) */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .navbar {
+        width: 92%;
+        min-height: 76px;
+        padding: 18px 20px;
+        border-radius: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .nav-links {
+        gap: 12px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .search-box {
+        width: 180px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .guideline-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .addon-box {
         flex-direction: column;
         text-align: center;
     }
+
     .addon-content {
         text-align: center;
+    }
+}
+
+@media (max-width: 560px) {
+    .navbar {
+        width: 90%;
+        padding: 14px 16px;
+        margin-top: 16px;
+    }
+
+    .logo a {
+        font-size: 18px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 8px 14px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .search-box {
+        width: 100%;
+        max-width: 220px;
+        height: 38px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .intro-card,
+    .price-card,
+    .addon-box,
+    .guide-card {
+        border-radius: 22px;
+    }
+
+    .price-wrapper,
+    .guideline-grid {
+        grid-template-columns: 1fr;
+        display: grid;
+    }
+
+    .instagram-box {
+        width: min(100%, 260px);
+        height: 58px;
+        font-size: 18px;
     }
 }
 /* GUIDELINES */
@@ -469,6 +556,84 @@ NAVBAR (Sama persis dengan Privacy)
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
     transition: transform 0.3s ease, background 0.3s ease;
     cursor: default;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        width: calc(100% - 32px);
+        margin: 30px auto 22px;
+    }
+
+    .hero h1 {
+        font-size: clamp(26px, 8vw, 33px);
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .intro-card,
+    .price-section,
+    .guideline-section,
+    .contact-section,
+    .question-section {
+        width: calc(100% - 32px);
+    }
+
+    .intro-card {
+        margin: 24px auto 36px;
+        padding: 18px 16px;
+        border-radius: 18px;
+    }
+
+    .intro-card h2,
+    .guideline-section h2,
+    .contact-section h2,
+    .question-section h2 {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .intro-card p,
+    .contact-section p,
+    .question-section p,
+    .guide-subtitle {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .price-wrapper,
+    .guideline-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .price-card {
+        min-width: 0;
+        width: 100%;
+        padding: 22px 16px;
+        border-radius: 18px;
+    }
+
+    .addon-box {
+        width: 100%;
+        padding: 17px 16px;
+        border-radius: 18px;
+    }
+
+    .guideline-section,
+    .contact-section,
+    .question-section {
+        margin-top: 36px;
+        margin-bottom: 36px;
+    }
+
+    .guide-card {
+        padding: 20px 16px;
+    }
 }
 
 .question-list span:hover {

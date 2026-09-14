@@ -77,19 +77,9 @@ const evanFrameSlots = {
     ]
 };
 
-// Slot khusus untuk Frame Leesol dengan urutan kanan yang sudah dikoreksi
-const leesolFrameSlots = [
-    { x: 3.6, y: 7.9, w: 42.7, h: 17.2 },
-    { x: 3.6, y: 29.2, w: 42.7, h: 17.2 },
-    { x: 3.6, y: 50.5, w: 42.7, h: 17.2 },
-    { x: 53.6, y: 3.8, w: 42.7, h: 17.1 },
-    { x: 53.6, y: 25.1, w: 42.7, h: 17.1 },
-    { x: 53.6, y: 46.4, w: 42.7, h: 17.1 }
-];
-
 function createFrame(fileName, name, slots = defaultSixSlots) {
     return {
-        src: fileName.startsWith('http') ? fileName : `assets/frames/${fileName}`,
+        src: `assets/frames/${fileName}`,
         name: name,
         slots: slots
     };
@@ -172,19 +162,6 @@ const artistDatabase = {
         thumbImg: "assets/KARINA.png",
         detailImg: "assets/KARINA.png",
         frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
-    },
-    "leesol": {
-        name: "LEESOL",
-        group: "KIIKII",
-        thumbImg: "assets/LEESOL.jpeg",
-        detailImg: "assets/LEESOL.jpeg",
-        frames: [
-            createFrame(
-                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/LEESOL%20FRAME.png",
-                "Leesol Frame",
-                leesolFrameSlots
-            )
-        ]
     }
 };
 
@@ -195,33 +172,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const artistGrid = document.getElementById('artistGrid');
     
     if (artistGrid) {
+        artistGrid.innerHTML = ''; // Kosongkan grid sebelum diisi
+
+        // Mengambil semua kunci (sunghoon, jay, dll) dari database
         const artistKeys = Object.keys(artistDatabase);
-        const searchInput = document.querySelector('.search-box input');
 
-        function renderArtists(searchTerm = '') {
-            const normalizedSearch = searchTerm.trim().toLowerCase();
-            const filteredKeys = artistKeys.filter(key => {
-                const artist = artistDatabase[key];
-                return [key, artist.name, artist.group].some(value =>
-                    value.toLowerCase().includes(normalizedSearch)
-                );
-            });
-
-            artistGrid.innerHTML = '';
-
-            if (!filteredKeys.length) {
-                artistGrid.innerHTML = '<p class="empty-message">Artist tidak ditemukan.</p>';
-                return;
-            }
-
-        filteredKeys.forEach(key => {
+        artistKeys.forEach(key => {
             const artist = artistDatabase[key];
             
+            // Membuat elemen kartu artis (<a>)
             const card = document.createElement('a');
-            card.href = `artist-detail.html?id=${key}`;
+            card.href = `artist-detail.html?id=${key}`; // Otomatis bikin link
             card.className = 'artist-card';
-            card.style.textDecoration = 'none';
+            card.style.textDecoration = 'none'; // Biar teksnya nggak bergaris bawah
             
+            // Mengisi HTML ke dalam kartu
             card.innerHTML = `
                 <div class="artist-image">
                     <img src="${artist.thumbImg}" alt="${artist.name}">
@@ -231,12 +196,6 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
             
             artistGrid.appendChild(card);
-        });
-        }
-
-        renderArtists();
-        searchInput?.addEventListener('input', event => {
-            renderArtists(event.target.value);
         });
     }
 
@@ -252,8 +211,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('artistName').innerText = artistData.name;
             document.getElementById('groupName').innerText = artistData.group;
             document.getElementById('artistImg').src = artistData.detailImg;
-
-            document.title = `${artistData.name} | Lumora`;
 
             const gallery = document.getElementById('frameGallery');
             gallery.innerHTML = ''; 
