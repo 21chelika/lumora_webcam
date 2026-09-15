@@ -175,7 +175,7 @@ const artistDatabase = {
     },
     "leesol": {
         name: "LEESOL",
-        group: "KIIKII",
+        group: "KIIIKIII",
         thumbImg: "assets/LEESOL.jpeg",
         detailImg: "assets/LEESOL.jpeg",
         frames: [
