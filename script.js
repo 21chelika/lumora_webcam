@@ -1,6 +1,3 @@
-// 1. DATABASE ARTIS (Pusat Data Kamu)
-// Frame besar sebaiknya disimpan sebagai object: src + name + slots.
-// Tiap frame photobooth memakai 6 slot foto.
 const defaultSixSlots = [
     { x: 8.4, y: 4.4, w: 39.2, h: 19.3 },
     { x: 52.5, y: 4.4, w: 39.2, h: 19.3 },
@@ -77,7 +74,6 @@ const evanFrameSlots = {
     ]
 };
 
-// Slot khusus untuk Frame Leesol dengan urutan kanan yang sudah dikoreksi
 const leesolFrameSlots = [
     { x: 3.6, y: 7.9, w: 42.7, h: 17.2 },
     { x: 3.6, y: 29.2, w: 42.7, h: 17.2 },
@@ -188,10 +184,8 @@ const artistDatabase = {
     }
 };
 
-// 2. LOGIKA UNTUK MENAMPILKAN DATA KE HTML
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- A. LOGIKA UNTUK HALAMAN HOME (artist.html) ---
     const artistGrid = document.getElementById('artistGrid');
     
     if (artistGrid) {
@@ -240,7 +234,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- B. LOGIKA UNTUK HALAMAN DETAIL (artist-detail.html) ---
     const artistNameElement = document.getElementById('artistName');
     
     if (artistNameElement) {
