@@ -17,9 +17,6 @@ img {
     max-width: 100%;
 }
 
-/* ==========================
-NAVBAR
-========================== */
 
 .navbar {
     width: 95%;
@@ -104,9 +101,6 @@ NAVBAR
     line-height: 1;
 }
 
-/* ==========================
-ARTIST
-========================== */
 
 .artist-section {
     display: flex;
@@ -188,7 +182,6 @@ ARTIST
     line-height: 1.5;
 }
 
-/* animation */
 
 @keyframes fadeUp {
     from {
@@ -201,9 +194,6 @@ ARTIST
     }
 }
 
-/* ==========================
-RESPONSIVE
-========================== */
 
 @media (max-width: 1100px) {
     .artist-grid {
