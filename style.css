@@ -13,10 +13,6 @@ body{
     animation:fadePage .5s ease;
 }
 
-/* ==========================
-NAVBAR
-========================== */
-
 .navbar{
     width:95%;
     height:75px;
@@ -120,10 +116,6 @@ NAVBAR
     font-size:20px;
 }
 
-/* ==========================
-HERO
-========================== */
-
 .hero{
     height:80vh;
 
@@ -226,10 +218,6 @@ HERO
     scale:1.03;
 }
 
-/* ==========================
-DECORATIONS
-========================== */
-
 .star{
     position:absolute;
     color:#A9B7C6;
@@ -260,8 +248,6 @@ DECORATIONS
     left:320px;
     bottom:240px;
 }
-
-/* blobs */
 
 .blob-left{
     position:absolute;
@@ -365,9 +351,6 @@ DECORATIONS
     color:#A8B58A;
 }
 
-/* ==========================
-ANIMATION
-========================== */
 
 @keyframes floating{
     0%{
@@ -507,9 +490,6 @@ body{
     }
 }
 
-/* ==========================
-RESPONSIVE
-========================== */
 
 @media(max-width:900px){
     .navbar{
