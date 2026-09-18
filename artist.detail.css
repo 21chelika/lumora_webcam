@@ -11,9 +11,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ==========================
-NAVBAR
-========================== */
+
 .navbar {
     width: 95%;
     height: 75px;
@@ -91,9 +89,6 @@ NAVBAR
     cursor: pointer;
 }
 
-/* ==========================
-DETAIL PAGE LAYOUT
-========================== */
 .detail-container {
     width: 90%;
     max-width: 1200px;
@@ -128,11 +123,11 @@ DETAIL PAGE LAYOUT
     transform: translateX(-4px);
 }
 
-/* Kolom Kiri */
+
 .artist-info {
     flex: 1; /* Proporsi lebar kiri */
     max-width: 400px;
-    position: sticky; /* Biar tetap kelihatan saat frame kanan di-scroll */
+    position: sticky; 
     top: 50px;
 }
 
@@ -166,7 +161,7 @@ DETAIL PAGE LAYOUT
     object-fit: cover;
 }
 
-/* Kolom Kanan */
+
 .frame-gallery {
     flex: 1.8; /* Proporsi lebar kanan (lebih besar) */
     display: grid;
@@ -179,7 +174,7 @@ DETAIL PAGE LAYOUT
     padding-right: 20px; 
 }
 
-/* Kustomisasi Scrollbar */
+
 .frame-gallery::-webkit-scrollbar {
     width: 10px;
 }
@@ -197,7 +192,7 @@ DETAIL PAGE LAYOUT
     background: #d1d4cb;
 }
 
-/* Frame Items */
+
 .frame-item {
     aspect-ratio: 3 / 4; /* Bentuk memanjang ke bawah khas photobooth */
     background: #E5E7E1;
@@ -218,7 +213,7 @@ DETAIL PAGE LAYOUT
     box-shadow: 0 10px 20px rgba(180, 106, 114, 0.15);
 }
 
-/* Responsive (Untuk layar HP / Tablet) */
+
 @media (max-width: 900px) {
     .navbar {
         width: 92%;
