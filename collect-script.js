@@ -11,10 +11,10 @@ const artistDatabase = {
     "kpop event": {
         name: "KPOP EVENT",
         group: "category of kpop events",
-        thumbImg: "assets/1.png", // Foto untuk di home
-        detailImg: "assets/1.png", // Foto untuk di halaman detail
+        thumbImg: "assets/1.png", 
+        detailImg: "assets/1.png", 
         frames: [
-            "https://via.placeholder.com/300x400/E5E7E1/E5E7E1", // Link frame
+            "https://via.placeholder.com/300x400/E5E7E1/E5E7E1", 
             "https://via.placeholder.com/300x400/E5E7E1/E5E7E1"
         ]
     },
@@ -34,10 +34,10 @@ const artistDatabase = {
     }
 };
 
-// 2. LOGIKA UNTUK MENAMPILKAN DATA KE HTML
+
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- A. LOGIKA UNTUK HALAMAN HOME (artist.html) ---
+
     const artistGrid = document.getElementById('artistGrid');
     
     if (artistGrid) {
@@ -63,13 +63,12 @@ document.addEventListener("DOMContentLoaded", function() {
         filteredKeys.forEach(key => {
             const artist = artistDatabase[key];
             
-            // Membuat elemen kartu artis (<a>)
             const card = document.createElement('a');
-            card.href = `artist.html?id=${key}`; // Otomatis bikin link
+            card.href = `artist.html?id=${key}`; 
             card.className = 'artist-card';
-            card.style.textDecoration = 'none'; // Biar teksnya nggak bergaris bawah
+            card.style.textDecoration = 'none'; 
             
-            // Mengisi HTML ke dalam kartu
+           
             card.innerHTML = `
                 <div class="artist-image">
                     <img src="${artist.thumbImg}" alt="${artist.name}">
@@ -88,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- B. LOGIKA UNTUK HALAMAN DETAIL (artist-detail.html) ---
+
     const artistNameElement = document.getElementById('artistName');
     
     if (artistNameElement) {
