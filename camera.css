@@ -1,4 +1,4 @@
-/* Gabungkan dengan style CSS kamu sebelumnya, atau pakai ini */
+
 *{
     margin:0;
     padding:0;
@@ -10,12 +10,6 @@ body{
     background:#FFF7E6;
     color:#2D3A47;
 }
-
-/* NAVBAR */
-
-/* ==========================
-NAVBAR (Sama persis dengan Privacy)
-========================== */
 
 .navbar {
     width: 95%;
@@ -36,21 +30,21 @@ NAVBAR (Sama persis dengan Privacy)
 .logo a {
     text-decoration: none;
     color: #B46A72;
-    font-weight: 700; /* Ketebalan font disamakan dengan Privacy */
+    font-weight: 700; 
     font-size: 20px;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 50px; /* Jarak antar menu dilebarkan lagi */
+    gap: 50px; 
 }
 
 .nav-links a {
     text-decoration: none;
     color: #B46A72;
     font-weight: 600;
-    font-size: 16px; /* Font size dibesarkan sama seperti Privacy */
+    font-size: 16px; 
     transition: color 0.3s ease;
 }
 
@@ -58,13 +52,13 @@ NAVBAR (Sama persis dengan Privacy)
     color: #D98C99;
 }
 
-/* Menu aktif berubah warna hijau, TANPA garis bawah */
+
 .nav-links a.active {
     color: #A8B58A;
 }
 
 .search-box {
-    width: 250px; /* Ukuran search box dibesarkan lagi */
+    width: 250px; 
     height: 40px;
     background: #F7C8D3;
     border-radius: 30px;
@@ -95,7 +89,7 @@ NAVBAR (Sama persis dengan Privacy)
     cursor: pointer;
 }
 
-/* HERO */
+
 
 .about-hero{
     text-align:center;
@@ -118,7 +112,7 @@ NAVBAR (Sama persis dengan Privacy)
     color:#F7C8D3;
 }
 
-/* CARDS */
+
 
 .about-container{
     width:85%;
@@ -153,7 +147,7 @@ NAVBAR (Sama persis dengan Privacy)
     font-weight:600;
 }
 
-/* FEATURES */
+
 
 .feature-section{
     width:85%;
