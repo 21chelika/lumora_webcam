@@ -17,10 +17,6 @@ img {
     max-width: 100%;
 }
 
-/* ==========================
-NAVBAR
-========================== */
-
 .navbar {
     width: 95%;
     min-height: 75px;
@@ -141,9 +137,6 @@ DETAIL PAGE LAYOUT
     transform: translateX(-4px);
 }
 
-/* ==========================
-ARTIST
-========================== */
 
 .artist-section {
     display: flex;
@@ -238,9 +231,6 @@ ARTIST
     }
 }
 
-/* ==========================
-RESPONSIVE
-========================== */
 
 @media (max-width: 1100px) {
     .artist-grid {
