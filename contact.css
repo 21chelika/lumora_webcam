@@ -11,15 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-/* NAVBAR */
-/* ==========================
-NAVBAR
-========================== */
-
-/* ==========================
-NAVBAR (Sama persis dengan Privacy)
-========================== */
-
 .navbar {
     width: 95%;
     min-height: 75px;
@@ -39,21 +30,21 @@ NAVBAR (Sama persis dengan Privacy)
 .logo a {
     text-decoration: none;
     color: #B46A72;
-    font-weight: 700; /* Ketebalan font disamakan dengan Privacy */
+    font-weight: 700; 
     font-size: 20px;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 50px; /* Jarak antar menu dilebarkan lagi */
+    gap: 50px; 
 }
 
 .nav-links a {
     text-decoration: none;
     color: #B46A72;
     font-weight: 600;
-    font-size: 16px; /* Font size dibesarkan sama seperti Privacy */
+    font-size: 16px; 
     transition: color 0.3s ease;
 }
 
@@ -61,13 +52,13 @@ NAVBAR (Sama persis dengan Privacy)
     color: #D98C99;
 }
 
-/* Menu aktif berubah warna hijau, TANPA garis bawah */
+
 .nav-links a.active {
     color: #A8B58A;
 }
 
 .search-box {
-    width: 250px; /* Ukuran search box dibesarkan lagi */
+    width: 250px; 
     height: 40px;
     background: #F7C8D3;
     border-radius: 30px;
@@ -98,7 +89,6 @@ NAVBAR (Sama persis dengan Privacy)
     cursor: pointer;
 }
 
-/* HERO (Sudah diperbaiki, tidak ada typo + lagi) */
 .hero {
     width: 90%;
     max-width: 1000px;
@@ -133,7 +123,7 @@ NAVBAR (Sama persis dengan Privacy)
     line-height: 1.6;
 }
 
-/* INTRO */
+
 .intro-card {
     width: 85%;
     max-width: 900px;
@@ -174,7 +164,7 @@ NAVBAR (Sama persis dengan Privacy)
     justify-content: center;
     gap: 30px;
     width: 100%;
-    flex-wrap: wrap; /* Supaya turun ke bawah kalau di HP */
+    flex-wrap: wrap; 
 }
 
 .price-card {
@@ -187,7 +177,7 @@ NAVBAR (Sama persis dengan Privacy)
     text-align: center;
     box-shadow: 0 15px 35px rgba(180, 106, 114, 0.12);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    position: relative; /* Untuk posisi badge */
+    position: relative; 
 }
 
 .price-card.popular {
@@ -271,11 +261,11 @@ NAVBAR (Sama persis dengan Privacy)
     font-weight: 500;
 }
 
-/* ADD-ON BOX */
+
 .addon-box {
     margin-top: 35px;
     width: 100%;
-    max-width: 790px; /* Sesuai dengan lebar 2 kartu digabung */
+    max-width: 790px; 
     background: white;
     border: 2px dashed #D98C99;
     border-radius: 20px;
@@ -316,11 +306,11 @@ NAVBAR (Sama persis dengan Privacy)
     border-radius: 15px;
     font-weight: 700;
     font-size: 18px;
-    white-space: nowrap; /* Biar harganya nggak turun ke baris baru */
+    white-space: nowrap; 
     box-shadow: 0 5px 15px rgba(217, 140, 153, 0.3);
 }
 
-/* Media Query untuk ukuran layar kecil (HP) */
+
 @media (max-width: 900px) {
     .navbar {
         width: 92%;
@@ -418,7 +408,7 @@ NAVBAR (Sama persis dengan Privacy)
         font-size: 18px;
     }
 }
-/* GUIDELINES */
+
 .guideline-section {
     width: 90%;
     max-width: 1000px;
@@ -467,7 +457,7 @@ NAVBAR (Sama persis dengan Privacy)
     border: 1px solid rgba(180, 106, 114, 0.2);
 }
 
-/* CONTACT */
+
 .contact-section {
     width: 90%;
     max-width: 800px;
@@ -488,7 +478,7 @@ NAVBAR (Sama persis dengan Privacy)
     margin: 0 auto 30px;
 }
 
-/* INSTAGRAM BUTTON */
+
 .instagram-box {
     margin: 0 auto;
     width: 300px;
@@ -520,7 +510,7 @@ NAVBAR (Sama persis dengan Privacy)
     box-shadow: 0 18px 35px rgba(180, 106, 114, 0.3);
 }
 
-/* QUESTIONS */
+
 .question-section {
     text-align: center;
     margin: 0 auto 100px;
@@ -648,7 +638,7 @@ NAVBAR (Sama persis dengan Privacy)
     font-size: 24px !important;
 }
 
-/* Animasi simpel untuk sparkle */
+
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
