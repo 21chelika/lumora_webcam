@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection | Lumora</title>
+    <link rel="stylesheet" href="artist.detail.css">
+    <link rel="stylesheet" href="responsive-navbar.css">
+    <link rel="stylesheet" href="collection-detail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">LUMORA</a></div>
+        <ul class="nav-links">
+            <li><a href="collections.html" class="active">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="privacy.html">privacy policy</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" placeholder="search">
+            <span>⌕</span>
+        </div>
+    </nav>
+
+    <main class="collection-detail-page">
+        <a href="collections.html" class="collection-back" aria-label="Back to collections">←</a>
+        <div class="collection-layout">
+            <section class="collection-info">
+                <p id="collection-category" class="collection-category">Collection</p>
+                <h1 id="collection-name">Choose a frame</h1>
+                <p id="collection-description">Choose a frame for your photobooth session.</p>
+                <div class="collection-image-wrap">
+                    <img id="collection-image" src="" alt="Collection preview">
+                </div>
+            </section>
+            <section id="collection-frames" class="collection-frames" aria-label="Collection frames"></section>
+        </div>
+    </main>
+
+    <script src="collection-detail.js"></script>
+</body>
+</html>

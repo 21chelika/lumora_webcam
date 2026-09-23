@@ -83,6 +83,25 @@ const leesolFrameSlots = [
     { x: 53.6, y: 46.4, w: 42.7, h: 17.1 }
 ];
 
+// Slot khusus untuk Frame Yeonjun (yj_bf dan yj_ride) yang sudah disesuaikan posisinya
+const yeonjunFrameSlots = {
+    bf: [
+        { x: 5.2, y: 6.8, w: 42.5, h: 19.0 },
+        { x: 52.3, y: 6.8, w: 42.5, h: 19.0 },
+        { x: 5.2, y: 28.9, w: 42.5, h: 19.0 },
+        { x: 52.3, y: 28.9, w: 42.5, h: 19.0 },
+        { x: 5.2, y: 51.0, w: 42.5, h: 19.0 },
+        { x: 52.3, y: 51.0, w: 42.5, h: 19.0 }
+    ],
+    ride: [
+        { x: 4.7, y: 5.2, w: 43.3, h: 20.1 },
+        { x: 52.0, y: 5.2, w: 43.3, h: 20.1 },
+        { x: 4.7, y: 27.4, w: 43.3, h: 20.1 },
+        { x: 52.0, y: 27.4, w: 43.3, h: 20.1 },
+        { x: 4.7, y: 49.6, w: 43.3, h: 20.1 },
+        { x: 52.0, y: 49.6, w: 43.3, h: 20.1 }
+    ]
+};
 function createFrame(fileName, name, slots = defaultSixSlots) {
     return {
         src: fileName.startsWith('http') ? fileName : `assets/frames/${fileName}`,
@@ -160,7 +179,18 @@ const artistDatabase = {
         group: "TOMORROW X TOGETHER (TXT)",
         thumbImg: "assets/YEONJUN.png",
         detailImg: "assets/YEONJUN.png",
-        frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
+        frames: [
+            createFrame(
+                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/yj_bf.png",
+                "Yeonjun Frame 1",
+                yeonjunFrameSlots.bf
+            ),
+            createFrame(
+                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/yj_ride.png",
+                "Yeonjun Frame 2",
+                yeonjunFrameSlots.ride
+            )
+        ]
     },
     "karina": {
         name: "KARINA",

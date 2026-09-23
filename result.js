@@ -22,6 +22,24 @@ const leesolSlots = [
     { x: 53.6, y: 25.1, w: 42.7, h: 17.1 },
     { x: 53.6, y: 46.4, w: 42.7, h: 17.1 }
 ];
+const yeonjunSlots = {
+    bf: [
+        { x: 5.2, y: 6.8, w: 42.5, h: 19.0 },
+        { x: 52.3, y: 6.8, w: 42.5, h: 19.0 },
+        { x: 5.2, y: 28.9, w: 42.5, h: 19.0 },
+        { x: 52.3, y: 28.9, w: 42.5, h: 19.0 },
+        { x: 5.2, y: 51.0, w: 42.5, h: 19.0 },
+        { x: 52.3, y: 51.0, w: 42.5, h: 19.0 }
+    ],
+    ride: [
+        { x: 4.7, y: 5.2, w: 43.3, h: 20.1 },
+        { x: 52.0, y: 5.2, w: 43.3, h: 20.1 },
+        { x: 4.7, y: 27.4, w: 43.3, h: 20.1 },
+        { x: 52.0, y: 27.4, w: 43.3, h: 20.1 },
+        { x: 4.7, y: 49.6, w: 43.3, h: 20.1 },
+        { x: 52.0, y: 49.6, w: 43.3, h: 20.1 }
+    ]
+};
 
 if (selectedFrame && selectedFrame.frameSrc) {
     frameOverlay.src = selectedFrame.frameSrc;
@@ -40,8 +58,13 @@ const isLeesolFrame = selectedFrame && (
     selectedFrame.artistId === 'leesol' ||
     (selectedFrame.frameSrc && selectedFrame.frameSrc.includes('LEESOL'))
 );
+const yeonjunFrameType = selectedFrame && selectedFrame.frameSrc
+    ? selectedFrame.frameSrc.includes('yj_ride') ? 'ride' : 'bf'
+    : null;
 const frameSlots = isLeesolFrame
     ? leesolSlots
+    : yeonjunFrameType
+        ? yeonjunSlots[yeonjunFrameType]
     : selectedFrame && Array.isArray(selectedFrame.slots)
         ? selectedFrame.slots
         : defaultSixSlots;
