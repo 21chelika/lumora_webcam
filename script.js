@@ -83,6 +83,15 @@ const leesolFrameSlots = [
     { x: 53.6, y: 46.4, w: 42.7, h: 17.1 }
 ];
 
+const buDidahSlots = [
+    { x: 6.5,  y: 8.2,  w: 40.6, h: 18.6 }, // Kiri Atas
+    { x: 53.7, y: 8.2,  w: 40.4, h: 18.6 }, // Kanan Atas
+    { x: 6.5,  y: 30.3, w: 40.6, h: 18.6 }, // Kiri Tengah
+    { x: 53.7, y: 30.3, w: 40.4, h: 18.6 }, // Kanan Tengah
+    { x: 6.5,  y: 52.4, w: 40.6, h: 18.6 }, // Kiri Bawah
+    { x: 53.7, y: 52.4, w: 40.4, h: 18.6 }  // Kanan Bawah
+];
+
 // Slot khusus untuk Frame Yeonjun (yj_bf dan yj_ride) yang sudah disesuaikan posisinya
 const yeonjunFrameSlots = {
     bf: [
@@ -214,19 +223,38 @@ const artistDatabase = {
     }
 };
 
+// Database Brand (Termasuk Bu Didah)
+const brandDatabase = {
+    "dapoer easy": {
+        name: "DAPOER EASY BU DIDAH",
+        group: "BRAND FRAME",
+        thumbImg: "assets/bu didah.png",
+        detailImg: "assets/bu didah.png",
+        frames: [
+            createFrame(
+                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/dapoer_budidah%20(1).png",
+                "Dapoer Easy Bu Didah Frame",
+                buDidahSlots
+            )
+        ]
+    }
+};
+
 document.addEventListener("DOMContentLoaded", function() {
     
     const artistGrid = document.getElementById('artistGrid');
     
     if (artistGrid) {
-        const artistKeys = Object.keys(artistDatabase);
+        const isBrandsPage = window.location.pathname.includes('brands');
+        const activeDatabase = isBrandsPage ? brandDatabase : artistDatabase;
+        const databaseKeys = Object.keys(activeDatabase);
         const searchInput = document.querySelector('.search-box input');
 
         function renderArtists(searchTerm = '') {
             const normalizedSearch = searchTerm.trim().toLowerCase();
-            const filteredKeys = artistKeys.filter(key => {
-                const artist = artistDatabase[key];
-                return [key, artist.name, artist.group].some(value =>
+            const filteredKeys = databaseKeys.filter(key => {
+                const item = activeDatabase[key];
+                return [key, item.name, item.group].some(value =>
                     value.toLowerCase().includes(normalizedSearch)
                 );
             });
@@ -234,28 +262,32 @@ document.addEventListener("DOMContentLoaded", function() {
             artistGrid.innerHTML = '';
 
             if (!filteredKeys.length) {
-                artistGrid.innerHTML = '<p class="empty-message">Artist tidak ditemukan.</p>';
+                artistGrid.innerHTML = '<p class="empty-message">Data tidak ditemukan.</p>';
                 return;
             }
 
-        filteredKeys.forEach(key => {
-            const artist = artistDatabase[key];
-            
-            const card = document.createElement('a');
-            card.href = `artist-detail.html?id=${key}`;
-            card.className = 'artist-card';
-            card.style.textDecoration = 'none';
-            
-            card.innerHTML = `
-                <div class="artist-image">
-                    <img src="${artist.thumbImg}" alt="${artist.name}">
-                </div>
-                <h3>${artist.name}</h3>
-                <p>${artist.group}</p>
-            `;
-            
-            artistGrid.appendChild(card);
-        });
+            filteredKeys.forEach(key => {
+                const item = activeDatabase[key];
+                const card = document.createElement('a');
+                
+                // Mengarahkan ke halaman detail yang sesuai
+                card.href = isBrandsPage 
+                    ? `brands-detail.html?id=${encodeURIComponent(key)}`
+                    : `artist-detail.html?id=${encodeURIComponent(key)}`;
+                    
+                card.className = 'artist-card';
+                card.style.textDecoration = 'none';
+                
+                card.innerHTML = `
+                    <div class="artist-image">
+                        <img src="${item.thumbImg}" alt="${item.name}">
+                    </div>
+                    <h3>${item.name}</h3>
+                    <p>${item.group}</p>
+                `;
+                
+                artistGrid.appendChild(card);
+            });
         }
 
         renderArtists();
@@ -268,43 +300,46 @@ document.addEventListener("DOMContentLoaded", function() {
     
     if (artistNameElement) {
         const urlParams = new URLSearchParams(window.location.search);
-        const artistId = urlParams.get('id');
-        const artistData = artistDatabase[artistId];
+        const itemId = urlParams.get('id');
+        
+        // Mengambil data dari artistDatabase atau brandDatabase secara fleksibel
+        const itemData = artistDatabase[itemId] || brandDatabase[itemId];
 
-        if (artistData) {
-            document.getElementById('artistName').innerText = artistData.name;
-            document.getElementById('groupName').innerText = artistData.group;
-            document.getElementById('artistImg').src = artistData.detailImg;
+        if (itemData) {
+            document.getElementById('artistName').innerText = itemData.name;
+            document.getElementById('groupName').innerText = itemData.group;
+            document.getElementById('artistImg').src = itemData.detailImg;
 
-            document.title = `${artistData.name} | Lumora`;
+            document.title = `${itemData.name} | Lumora`;
 
             const gallery = document.getElementById('frameGallery');
             gallery.innerHTML = ''; 
 
-            artistData.frames.forEach((frame, index) => {
+            itemData.frames.forEach((frame, index) => {
                 const frameSrc = typeof frame === 'string' ? frame : frame.src;
-                const frameName = typeof frame === 'string' ? `Frame ${artistData.name}` : frame.name;
+                const frameName = typeof frame === 'string' ? `Frame ${itemData.name}` : frame.name;
                 const frameBox = document.createElement('div');
                 frameBox.className = 'frame-item';
                 frameBox.innerHTML = `<img src="${frameSrc}" alt="${frameName}">`;
                 frameBox.addEventListener('click', () => {
                     localStorage.setItem('lumoraSelectedFrame', JSON.stringify({
-                        artistId: artistId,
-                        artistName: artistData.name,
-                        groupName: artistData.group,
-                        artistImg: artistData.detailImg,
+                        artistId: itemId,
+                        artistName: itemData.name,
+                        groupName: itemData.group,
+                        artistImg: itemData.detailImg,
                         frameSrc: frameSrc,
                         frameName: frameName,
                         slots: typeof frame === 'string' ? null : frame.slots,
                         frameIndex: index
                     }));
-                    window.location.href = `camera.html?artist=${artistId}&frame=${index}`;
+                    window.location.href = `camera.html?artist=${itemId}&frame=${index}`;
                 });
                 gallery.appendChild(frameBox);
             });
         } else {
-            document.getElementById('groupName').innerText = "Artist Not Found";
+            document.getElementById('groupName').innerText = "Data Not Found";
             document.getElementById('artistName').innerText = "";
         }
     }
 });
+
