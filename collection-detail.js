@@ -28,10 +28,11 @@ const collections = {
     'brands frame': {
         name: 'BRANDS FRAME',
         category: 'Brands collection',
-        description: 'Koleksi frame brands segera hadir di Lumora.',
+        description: 'Enam frame pertama untuk koleksi brands sedang kami siapkan.',
         image: 'assets/4.png',
         status: 'coming-soon',
-        frames: []
+        frames: [],
+        placeholderCount: 6
     }
 };
 
@@ -51,7 +52,14 @@ if (!collection) {
     document.getElementById('collection-image').src = collection.image;
     document.getElementById('collection-image').alt = `${collection.name} preview`;
 
-    if (!collection.frames.length) {
+    if (!collection.frames.length && collection.placeholderCount) {
+        for (let index = 0; index < collection.placeholderCount; index++) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'collection-frame-placeholder';
+            placeholder.innerHTML = `<span>Frame ${index + 1}</span><small>Coming Soon</small>`;
+            frameGrid.appendChild(placeholder);
+        }
+    } else if (!collection.frames.length) {
         const status = document.createElement('div');
         status.className = `collection-status ${collection.status}`;
         status.textContent = collection.status === 'coming-soon'
@@ -60,7 +68,7 @@ if (!collection) {
         frameGrid.appendChild(status);
     }
 
-    collection.frames.forEach((frameSrc, index) => {
+    collection.frames.slice(0, 6).forEach((frameSrc, index) => {
         const frame = document.createElement('button');
         frame.type = 'button';
         frame.className = 'collection-frame';
