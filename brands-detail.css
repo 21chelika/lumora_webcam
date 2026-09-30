@@ -1,0 +1,402 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #FFF7E6;
+    color: #2D3A47;
+    overflow-x: hidden;
+}
+
+
+.navbar {
+    width: 95%;
+    height: 75px;
+    background: rgba(255, 255, 255, 0.45);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    margin: 25px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.logo a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 50px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #B46A72;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #D98C99;
+}
+
+.nav-links a.active {
+    color: #A8B58A;
+}
+
+.search-box {
+    width: 250px;
+    height: 40px;
+    background: #F7C8D3;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #B46A72;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #B46A72;
+    opacity: 0.6;
+}
+
+.search-box span {
+    color: #B46A72;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.detail-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto 80px;
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 0;
+    left: -72px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    color: #B46A72;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(180, 106, 114, 0.12);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.back-arrow:hover {
+    background: #F7C8D3;
+    transform: translateX(-4px);
+}
+
+
+.artist-info {
+    flex: 1; /* Proporsi lebar kiri */
+    max-width: 400px;
+    position: sticky; 
+    top: 50px;
+}
+
+.artist-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #B46A72;
+    letter-spacing: 0.5px;
+}
+
+.group-name {
+    font-size: 32px;
+    font-weight: 800;
+    color: #B46A72;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.artist-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Bentuk persegi panjang mendatar */
+    background: #E5E7E1;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.artist-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.frame-gallery {
+    flex: 1.8; /* Proporsi lebar kanan (lebih besar) */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    
+    /* Pengaturan Scrollbar persis desain */
+    max-height: 600px; 
+    overflow-y: auto;
+    padding-right: 20px; 
+}
+
+
+.frame-gallery::-webkit-scrollbar {
+    width: 10px;
+}
+
+.frame-gallery::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.frame-gallery::-webkit-scrollbar-thumb {
+    background: #EAEBE6;
+    border-radius: 999px;
+}
+
+.frame-gallery::-webkit-scrollbar-thumb:hover {
+    background: #d1d4cb;
+}
+
+
+.frame-item {
+    aspect-ratio: 3 / 4; /* Bentuk memanjang ke bawah khas photobooth */
+    background: #E5E7E1;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.frame-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.frame-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(180, 106, 114, 0.15);
+}
+
+
+@media (max-width: 900px) {
+    .navbar {
+        width: 92%;
+        min-height: 76px;
+        padding: 18px 20px;
+        border-radius: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .nav-links {
+        gap: 12px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .search-box {
+        width: 180px;
+    }
+
+    .detail-container {
+        flex-direction: column;
+        width: 92%;
+        gap: 28px;
+    }
+
+    .back-arrow {
+        position: static;
+        margin-bottom: 8px;
+    }
+    
+    .artist-info {
+        max-width: 100%;
+        position: static;
+    }
+
+    .frame-gallery {
+        max-height: auto;
+        overflow-y: visible;
+        padding-right: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .navbar {
+        width: 92%;
+        min-height: 76px;
+        height: auto;
+        border-radius: 30px;
+        padding: 18px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 18px;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .search-box {
+        width: min(100%, 280px);
+    }
+
+    .frame-gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .navbar {
+        width: 90%;
+        margin: 16px auto;
+        padding: 14px 16px;
+        border-radius: 24px;
+    }
+
+    .logo a {
+        font-size: 18px;
+    }
+
+    .nav-links {
+        gap: 8px 14px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .search-box {
+        width: 100%;
+        height: 38px;
+    }
+    .group-name {
+        font-size: 26px;
+    }
+
+    .frame-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-container {
+        margin-top: 26px;
+    }
+}
+
+@media (max-width: 600px) {
+    .detail-container {
+        width: calc(100% - 32px);
+        margin: 26px auto 48px;
+        gap: 24px;
+    }
+
+    .back-arrow {
+        width: 38px;
+        height: 38px;
+        margin: 0;
+        border-radius: 14px;
+        font-size: 22px;
+        box-shadow: 0 6px 16px rgba(180, 106, 114, 0.12);
+    }
+
+    .artist-info {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: none;
+    }
+
+    .artist-name {
+        margin-left: 2px;
+        font-size: 14px;
+    }
+
+    .group-name {
+        margin: 3px 0 14px;
+        font-size: 26px;
+        line-height: 1.05;
+    }
+
+    .artist-photo {
+        width: min(100%, 260px);
+        aspect-ratio: 4 / 3;
+        border-radius: 20px;
+        box-shadow: 0 10px 24px rgba(180, 106, 114, 0.12);
+    }
+
+    .frame-gallery {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        max-height: none;
+        overflow: visible;
+        padding: 0;
+    }
+
+    .frame-item {
+        aspect-ratio: 3 / 4;
+        border-radius: 16px;
+        box-shadow: 0 7px 18px rgba(180, 106, 114, 0.1);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .frame-item:active {
+        transform: scale(0.97);
+    }
+
+    .frame-item:hover {
+        transform: none;
+        box-shadow: 0 7px 18px rgba(180, 106, 114, 0.1);
+    }
+}
