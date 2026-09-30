@@ -57,9 +57,15 @@ document.addEventListener("DOMContentLoaded", function() {
             const artist = artistDatabase[key];
             
             const card = document.createElement('a');
-            card.href = key === 'kpop event'
-                ? `artist.html?id=${encodeURIComponent(key)}`
-                : `collection-detail.html?id=${encodeURIComponent(key)}`;
+            card.href = key === 'cafe event'
+                ? 'cafe.html'
+                : key === 'classic frame'
+                    ? 'classic.html'
+                : key === 'brands frame'
+                    ? 'brands.html'
+                : key === 'kpop event'
+                    ? `artist.html?id=${encodeURIComponent(key)}`
+                    : `collection-detail.html?id=${encodeURIComponent(key)}`;
             card.className = 'artist-card';
             card.style.textDecoration = 'none'; 
             
