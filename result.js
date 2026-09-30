@@ -22,6 +22,16 @@ const leesolSlots = [
     { x: 53.6, y: 25.1, w: 42.7, h: 17.1 },
     { x: 53.6, y: 46.4, w: 42.7, h: 17.1 }
 ];
+
+const buDidahSlots = [
+    { x: 6.5,  y: 8.2,  w: 40.6, h: 18.6 },
+    { x: 53.7, y: 8.2,  w: 40.4, h: 18.6 },
+    { x: 6.5,  y: 30.3, w: 40.6, h: 18.6 },
+    { x: 53.7, y: 30.3, w: 40.4, h: 18.6 },
+    { x: 6.5,  y: 52.4, w: 40.6, h: 18.6 },
+    { x: 53.7, y: 52.4, w: 40.4, h: 18.6 }
+];
+
 const yeonjunSlots = {
     bf: [
         { x: 5.2, y: 6.8, w: 42.5, h: 19.0 },
@@ -58,16 +68,23 @@ const isLeesolFrame = selectedFrame && (
     selectedFrame.artistId === 'leesol' ||
     (selectedFrame.frameSrc && selectedFrame.frameSrc.includes('LEESOL'))
 );
+
+const isBuDidahFrame = selectedFrame && selectedFrame.frameSrc &&
+    selectedFrame.frameSrc.includes('budidah');
+
 const yeonjunFrameType = selectedFrame && selectedFrame.frameSrc
     ? selectedFrame.frameSrc.includes('yj_ride') ? 'ride' : 'bf'
     : null;
-const frameSlots = isLeesolFrame
-    ? leesolSlots
-    : yeonjunFrameType
-        ? yeonjunSlots[yeonjunFrameType]
-    : selectedFrame && Array.isArray(selectedFrame.slots)
-        ? selectedFrame.slots
-        : defaultSixSlots;
+
+const frameSlots = isBuDidahFrame
+    ? buDidahSlots
+    : isLeesolFrame
+        ? leesolSlots
+        : yeonjunFrameType
+            ? yeonjunSlots[yeonjunFrameType]
+            : selectedFrame && Array.isArray(selectedFrame.slots)
+                ? selectedFrame.slots
+                : defaultSixSlots;
 
 function loadImage(source) {
     return new Promise((resolve, reject) => {
