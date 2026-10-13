@@ -1,3 +1,11 @@
+const selectedPhotos = JSON.parse(
+    localStorage.getItem('lumoraSelectedPhotos') || localStorage.getItem('lumoraPhotos') || '[]'
+).slice(0, 6);
+const selectedFrame = JSON.parse(localStorage.getItem('lumoraSelectedFrame') || 'null');
+const photoLayer = document.getElementById('photo-layer');
+const frameOverlay = document.getElementById('frame-overlay');
+const downloadButton = document.getElementById('download-btn');
+const slotCount = 6;
 const defaultSixSlots = [
     { x: 8.4, y: 4.4, w: 39.2, h: 19.3 },
     { x: 52.5, y: 4.4, w: 39.2, h: 19.3 },
@@ -6,75 +14,7 @@ const defaultSixSlots = [
     { x: 8.4, y: 48.6, w: 39.2, h: 19.4 },
     { x: 52.5, y: 48.6, w: 39.2, h: 19.4 }
 ];
-
-const evanFrameSlots = {
-    musicPink: [
-        { x: 3.3, y: 7.1, w: 43.1, h: 17.2, radius: '0 8% 8% 8%' },
-        { x: 52.4, y: 14.8, w: 43.5, h: 17.2 },
-        { x: 3.3, y: 27.5, w: 43.1, h: 17.0 },
-        { x: 52.4, y: 36.3, w: 43.5, h: 17.2, radius: '0 8% 8% 8%' },
-        { x: 3.3, y: 48.1, w: 43.1, h: 17.2, radius: '0 8% 8% 8%' },
-        { x: 52.4, y: 57.0, w: 43.5, h: 17.2 }
-    ],
-    simpleBeige: [
-        { x: 8.4, y: 4.4, w: 39.2, h: 19.3 },
-        { x: 52.5, y: 4.4, w: 39.2, h: 19.3 },
-        { x: 8.4, y: 26.5, w: 39.2, h: 19.4 },
-        { x: 52.5, y: 26.5, w: 39.2, h: 19.4 },
-        { x: 8.4, y: 48.6, w: 39.2, h: 19.4 },
-        { x: 52.5, y: 48.6, w: 39.2, h: 19.4 }
-    ],
-    debutRed: [
-        { x: 4.1, y: 5.7, w: 39.8, h: 18.3, radius: '1%' },
-        { x: 54.0, y: 5.2, w: 40.5, h: 18.0, radius: '50%' },
-        { x: 7.5, y: 30.5, w: 38.0, h: 17.0, rotate: '-11deg' },
-        { x: 54.0, y: 31.0, w: 38.0, h: 17.0, rotate: '8deg' },
-        { x: 3.7, y: 58.1, w: 42.0, h: 18.0, radius: '50%' },
-        { x: 53.0, y: 53.0, w: 39.0, h: 17.5, radius: '1%' }
-    ],
-    pinkRide: [
-        { x: 3.1, y: 7.0, w: 42.3, h: 17.6 },
-        { x: 53.6, y: 7.0, w: 42.3, h: 17.6 },
-        { x: 2.9, y: 27.5, w: 42.3, h: 17.6 },
-        { x: 53.4, y: 27.5, w: 42.3, h: 17.6 },
-        { x: 3.5, y: 47.8, w: 42.3, h: 17.6 },
-        { x: 53.9, y: 47.8, w: 42.3, h: 17.6 }
-    ],
-    darkRide: [
-        { x: 5.0, y: 11.4, w: 41.3, h: 17.2 },
-        { x: 54.4, y: 11.4, w: 41.3, h: 17.2 },
-        { x: 4.8, y: 31.5, w: 41.3, h: 17.2 },
-        { x: 54.2, y: 31.5, w: 41.3, h: 17.2 },
-        { x: 5.3, y: 51.4, w: 41.3, h: 17.2 },
-        { x: 54.7, y: 51.4, w: 41.3, h: 17.2 }
-    ],
-    gothicRed: [
-        { x: 6.3, y: 7.2, w: 41.0, h: 19.6, radius: '0 0 7% 7%' },
-        { x: 52.6, y: 7.2, w: 41.0, h: 19.6, radius: '28% 28% 0 0' },
-        { x: 6.3, y: 30.0, w: 41.0, h: 19.6, radius: '28% 28% 0 0' },
-        { x: 52.6, y: 30.0, w: 41.0, h: 19.6, radius: '28% 28% 0 0' },
-        { x: 6.3, y: 56.5, w: 41.0, h: 19.6, radius: '28% 28% 5% 5%' },
-        { x: 52.6, y: 56.5, w: 41.0, h: 19.6, radius: '28% 28% 5% 5%' }
-    ],
-    laceRed: [
-        { x: 4.6, y: 3.0, w: 42.3, h: 19.6 },
-        { x: 53.2, y: 3.0, w: 42.3, h: 19.6 },
-        { x: 4.6, y: 25.6, w: 42.3, h: 19.6 },
-        { x: 53.2, y: 25.6, w: 42.3, h: 19.6 },
-        { x: 4.6, y: 48.1, w: 42.3, h: 19.6 },
-        { x: 53.2, y: 48.1, w: 42.3, h: 19.6 }
-    ],
-    softPink: [
-        { x: 3.2, y: 7.0, w: 42.0, h: 17.2, radius: '0 8% 8% 8%' },
-        { x: 52.6, y: 14.7, w: 43.0, h: 17.1 },
-        { x: 3.3, y: 27.5, w: 42.0, h: 17.0 },
-        { x: 52.6, y: 36.2, w: 43.0, h: 17.1, radius: '0 8% 8% 8%' },
-        { x: 3.2, y: 48.1, w: 42.0, h: 17.2, radius: '0 8% 8% 8%' },
-        { x: 52.6, y: 57.0, w: 43.0, h: 17.1 }
-    ]
-};
-
-const leesolFrameSlots = [
+const leesolSlots = [
     { x: 3.6, y: 7.9, w: 42.7, h: 17.2 },
     { x: 3.6, y: 29.2, w: 42.7, h: 17.2 },
     { x: 3.6, y: 50.5, w: 42.7, h: 17.2 },
@@ -84,16 +24,24 @@ const leesolFrameSlots = [
 ];
 
 const buDidahSlots = [
-    { x: 6.5,  y: 8.2,  w: 40.6, h: 18.6 }, // Kiri Atas
-    { x: 53.7, y: 8.2,  w: 40.4, h: 18.6 }, // Kanan Atas
-    { x: 6.5,  y: 30.3, w: 40.6, h: 18.6 }, // Kiri Tengah
-    { x: 53.7, y: 30.3, w: 40.4, h: 18.6 }, // Kanan Tengah
-    { x: 6.5,  y: 52.4, w: 40.6, h: 18.6 }, // Kiri Bawah
-    { x: 53.7, y: 52.4, w: 40.4, h: 18.6 }  // Kanan Bawah
+    { x: 6.5,  y: 8.2,  w: 40.6, h: 18.6 },
+    { x: 53.7, y: 8.2,  w: 40.4, h: 18.6 },
+    { x: 6.5,  y: 30.3, w: 40.6, h: 18.6 },
+    { x: 53.7, y: 30.3, w: 40.4, h: 18.6 },
+    { x: 6.5,  y: 52.4, w: 40.6, h: 18.6 },
+    { x: 53.7, y: 52.4, w: 40.4, h: 18.6 }
 ];
 
-// Slot khusus untuk Frame Yeonjun (yj_bf dan yj_ride) yang sudah disesuaikan posisinya
-const yeonjunFrameSlots = {
+const creamMusicSlots = [
+    { x: 5.5, y: 6.6, w: 42.2, h: 21.9, radius: '12%', cropX: 0.34 },
+    { x: 52.5, y: 6.6, w: 42.0, h: 21.0, radius: '12%' },
+    { x: 5.5, y: 31.5, w: 42.2, h: 19.5, radius: '12%' },
+    { x: 52.5, y: 31.5, w: 42.0, h: 19.6, radius: '12%' },
+    { x: 6.0, y: 54.4, w: 42.0, h: 19.3, radius: '12%' },
+    { x: 52.5, y: 52.5, w: 42.0, h: 23.0, radius: '12%', cropX: 0.34 }
+];
+
+const yeonjunSlots = {
     bf: [
         { x: 5.2, y: 6.8, w: 42.5, h: 19.0 },
         { x: 52.3, y: 6.8, w: 42.5, h: 19.0 },
@@ -111,235 +59,152 @@ const yeonjunFrameSlots = {
         { x: 52.0, y: 49.6, w: 43.3, h: 20.1 }
     ]
 };
-function createFrame(fileName, name, slots = defaultSixSlots) {
-    return {
-        src: fileName.startsWith('http') ? fileName : `assets/frames/${fileName}`,
-        name: name,
-        slots: slots
-    };
+
+if (selectedFrame && selectedFrame.frameSrc) {
+    frameOverlay.src = selectedFrame.frameSrc;
+    frameOverlay.alt = `${selectedFrame.artistName} frame`;
+    frameOverlay.addEventListener('load', () => {
+        if (frameOverlay.naturalWidth && frameOverlay.naturalHeight) {
+            document.querySelector('.frame-stage').style.aspectRatio =
+                `${frameOverlay.naturalWidth} / ${frameOverlay.naturalHeight}`;
+        }
+    });
+} else {
+    frameOverlay.style.display = 'none';
 }
 
-const evanFrames = [
-    createFrame('evan-music-pink.png', 'Music Pink', evanFrameSlots.musicPink),
-    createFrame('evan-simple-beige.png', 'Simple Beige', evanFrameSlots.simpleBeige),
-    createFrame('evan-debut-red.png', 'Debut Red', evanFrameSlots.debutRed),
-    createFrame('evan-pink-ride.png', 'Pink Ride', evanFrameSlots.pinkRide),
-    createFrame('evan-dark-ride.png', 'Dark Ride', evanFrameSlots.darkRide),
-    createFrame('evan-gothic-red.png', 'Gothic Red', evanFrameSlots.gothicRed),
-    createFrame('evan-lace-red.png', 'Lace Red', evanFrameSlots.laceRed),
-    createFrame('evan-soft-pink.png', 'Soft Pink', evanFrameSlots.softPink)
-];
+const isLeesolFrame = selectedFrame && (
+    selectedFrame.artistId === 'leesol' ||
+    (selectedFrame.frameSrc && selectedFrame.frameSrc.includes('LEESOL'))
+);
 
-const artistDatabase = {
-    "jungwon": {
-        name: "JUNGWON",
-        group: "ENHYPEN",
-        thumbImg: "assets/JUNGWON.png", // Foto untuk di home
-        detailImg: "assets/JUNGWON.png", // Foto untuk di halaman detail
-        frames: [
-            "https://via.placeholder.com/300x400/E5E7E1/E5E7E1", // Link frame
-            "https://via.placeholder.com/300x400/E5E7E1/E5E7E1"
-        ]
-    },
-    "jay": {
-        name: "JAY",
-        group: "ENHYPEN",
-        thumbImg: "assets/JAY.png",
-        detailImg: "assets/JAY.png",
-        frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
-    },
-    "jake": {
-        name: "JAKE",
-        group: "ENHYPEN",
-        thumbImg: "assets/JAKE.png",
-        detailImg: "assets/JAKE.png",
-        frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
-    },
-    "sunghoon": {
-        name: "SUNGHOON",
-        group: "ENHYPEN",
-        thumbImg: "assets/SUNGHOON.png",
-        detailImg: "assets/SUNGHOON.png",
-        frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
-    },
-    "sunoo": {
-        name: "SUNOO",
-        group: "ENHYPEN",
-        thumbImg: "assets/SUNOO.png",
-        detailImg: "assets/SUNOO.png",
-        frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
-    },
-    "niki": {
-        name: "NI-KI",
-        group: "ENHYPEN",
-        thumbImg: "assets/NI-KI.png",
-        detailImg: "assets/NIKI.png",
-        frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
-    },
-    "evan": {
-        name: "EVAN",
-        group: "EVAN/HEESEUNG",
-        thumbImg: "assets/EVAN.png",
-        detailImg: "assets/EVAN.png",
-        frames: evanFrames
-    },
-    "yeonjun": {
-        name: "YEONJUN",
-        group: "TOMORROW X TOGETHER (TXT)",
-        thumbImg: "assets/YEONJUN.png",
-        detailImg: "assets/YEONJUN.png",
-        frames: [
-            createFrame(
-                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/yj_bf.png",
-                "Yeonjun Frame 1",
-                yeonjunFrameSlots.bf
-            ),
-            createFrame(
-                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/yj_ride.png",
-                "Yeonjun Frame 2",
-                yeonjunFrameSlots.ride
-            )
-        ]
-    },
-    "karina": {
-        name: "KARINA",
-        group: "AESPA",
-        thumbImg: "assets/KARINA.png",
-        detailImg: "assets/KARINA.png",
-        frames: ["https://via.placeholder.com/300x400/E5E7E1/E5E7E1"]
-    },
-    "leesol": {
-        name: "LEESOL",
-        group: "KIIIKIII",
-        thumbImg: "assets/LEESOL.jpeg",
-        detailImg: "assets/LEESOL.jpeg",
-        frames: [
-            createFrame(
-                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/LEESOL%20FRAME.png",
-                "Leesol Frame",
-                leesolFrameSlots
-            )
-        ]
+const isBuDidahFrame = selectedFrame && selectedFrame.frameSrc &&
+    selectedFrame.frameSrc.includes('budidah');
+
+const isCreamMusicFrame = selectedFrame && selectedFrame.frameSrc &&
+    selectedFrame.frameSrc.includes('cream_music');
+
+const yeonjunFrameType = selectedFrame && selectedFrame.frameSrc
+    ? selectedFrame.frameSrc.includes('yj_ride') ? 'ride' : 'bf'
+    : null;
+
+const frameSlots = isBuDidahFrame
+    ? buDidahSlots
+    : isLeesolFrame
+        ? leesolSlots
+        : isCreamMusicFrame
+            ? creamMusicSlots
+            : yeonjunFrameType
+                ? yeonjunSlots[yeonjunFrameType]
+                : selectedFrame && Array.isArray(selectedFrame.slots)
+                    ? selectedFrame.slots
+                    : defaultSixSlots;
+
+function loadImage(source) {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+
+        if (source.startsWith('http')) {
+            image.crossOrigin = 'anonymous';
+        }
+
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = source;
+    });
+}
+
+function drawCoverImage(context, image, x, y, width, height, cropX = 0.5) {
+    const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+    const sourceWidth = width / scale;
+    const sourceHeight = height / scale;
+    const sourceX = (image.naturalWidth - sourceWidth) * cropX;
+    const sourceY = (image.naturalHeight - sourceHeight) / 2;
+
+    context.drawImage(
+        image,
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+        x,
+        y,
+        width,
+        height
+    );
+}
+
+async function downloadResult() {
+    if (!selectedFrame || !selectedFrame.frameSrc) {
+        return;
     }
-};
 
-// Database Brand (Termasuk Bu Didah)
-const brandDatabase = {
-    "dapoer easy": {
-        name: "DAPOER EASY BU DIDAH",
-        group: "BRAND FRAME",
-        thumbImg: "assets/bu didah.png",
-        detailImg: "assets/bu didah.png",
-        frames: [
-            createFrame(
-                "https://dhzljytflsetfkcpsscr.supabase.co/storage/v1/object/public/frames/dapoer_budidah%20(1).png",
-                "Dapoer Easy Bu Didah Frame",
-                buDidahSlots
-            )
-        ]
-    }
-};
+    downloadButton.disabled = true;
+    downloadButton.innerText = 'Preparing...';
 
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const artistGrid = document.getElementById('artistGrid');
-    
-    if (artistGrid) {
-        const isBrandsPage = window.location.pathname.includes('brands');
-        const activeDatabase = isBrandsPage ? brandDatabase : artistDatabase;
-        const databaseKeys = Object.keys(activeDatabase);
-        const searchInput = document.querySelector('.search-box input');
+    try {
+        const frameImage = await loadImage(selectedFrame.frameSrc);
+        const canvas = document.createElement('canvas');
+        canvas.width = frameImage.naturalWidth;
+        canvas.height = frameImage.naturalHeight;
+        const context = canvas.getContext('2d');
 
-        function renderArtists(searchTerm = '') {
-            const normalizedSearch = searchTerm.trim().toLowerCase();
-            const filteredKeys = databaseKeys.filter(key => {
-                const item = activeDatabase[key];
-                return [key, item.name, item.group].some(value =>
-                    value.toLowerCase().includes(normalizedSearch)
-                );
-            });
-
-            artistGrid.innerHTML = '';
-
-            if (!filteredKeys.length) {
-                artistGrid.innerHTML = '<p class="empty-message">Data tidak ditemukan.</p>';
-                return;
+        for (let index = 0; index < slotCount; index++) {
+            if (!selectedPhotos[index]) {
+                continue;
             }
 
-            filteredKeys.forEach(key => {
-                const item = activeDatabase[key];
-                const card = document.createElement('a');
-                
-                // Mengarahkan ke halaman detail yang sesuai
-                card.href = isBrandsPage 
-                    ? `brands-detail.html?id=${encodeURIComponent(key)}`
-                    : `artist-detail.html?id=${encodeURIComponent(key)}`;
-                    
-                card.className = 'artist-card';
-                card.style.textDecoration = 'none';
-                
-                card.innerHTML = `
-                    <div class="artist-image">
-                        <img src="${item.thumbImg}" alt="${item.name}">
-                    </div>
-                    <h3>${item.name}</h3>
-                    <p>${item.group}</p>
-                `;
-                
-                artistGrid.appendChild(card);
-            });
+            const photo = await loadImage(selectedPhotos[index]);
+            const slotData = frameSlots[index] || defaultSixSlots[index];
+            const x = canvas.width * slotData.x / 100;
+            const y = canvas.height * slotData.y / 100;
+            const width = canvas.width * slotData.w / 100;
+            const height = canvas.height * slotData.h / 100;
+
+            context.save();
+            context.beginPath();
+            context.rect(x, y, width, height);
+            context.clip();
+            drawCoverImage(context, photo, x, y, width, height, slotData.cropX);
+            context.restore();
         }
 
-        renderArtists();
-        searchInput?.addEventListener('input', event => {
-            renderArtists(event.target.value);
-        });
+        context.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
+        const link = document.createElement('a');
+        link.download = `lumora-frame-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    } catch (error) {
+        console.error('Download error:', error);
+        alert('Gambar belum bisa diunduh. Coba refresh halaman lalu ulangi.');
+    } finally {
+        downloadButton.disabled = false;
+        downloadButton.innerText = 'Download';
     }
+}
 
-    const artistNameElement = document.getElementById('artistName');
-    
-    if (artistNameElement) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const itemId = urlParams.get('id');
-        
-        // Mengambil data dari artistDatabase atau brandDatabase secara fleksibel
-        const itemData = artistDatabase[itemId] || brandDatabase[itemId];
+for (let index = 0; index < slotCount; index++) {
+    const slotData = frameSlots[index] || defaultSixSlots[index];
+    const slot = document.createElement('div');
+    slot.className = 'photo-slot';
+    slot.style.left = `${slotData.x}%`;
+    slot.style.top = `${slotData.y}%`;
+    slot.style.width = `${slotData.w}%`;
+    slot.style.height = `${slotData.h}%`;
+    slot.style.borderRadius = slotData.radius || '0';
+    slot.style.transform = slotData.rotate ? `rotate(${slotData.rotate})` : '';
 
-        if (itemData) {
-            document.getElementById('artistName').innerText = itemData.name;
-            document.getElementById('groupName').innerText = itemData.group;
-            document.getElementById('artistImg').src = itemData.detailImg;
-
-            document.title = `${itemData.name} | Lumora`;
-
-            const gallery = document.getElementById('frameGallery');
-            gallery.innerHTML = ''; 
-
-            itemData.frames.forEach((frame, index) => {
-                const frameSrc = typeof frame === 'string' ? frame : frame.src;
-                const frameName = typeof frame === 'string' ? `Frame ${itemData.name}` : frame.name;
-                const frameBox = document.createElement('div');
-                frameBox.className = 'frame-item';
-                frameBox.innerHTML = `<img src="${frameSrc}" alt="${frameName}">`;
-                frameBox.addEventListener('click', () => {
-                    localStorage.setItem('lumoraSelectedFrame', JSON.stringify({
-                        artistId: itemId,
-                        artistName: itemData.name,
-                        groupName: itemData.group,
-                        artistImg: itemData.detailImg,
-                        frameSrc: frameSrc,
-                        frameName: frameName,
-                        slots: typeof frame === 'string' ? null : frame.slots,
-                        frameIndex: index
-                    }));
-                    window.location.href = `camera.html?artist=${itemId}&frame=${index}`;
-                });
-                gallery.appendChild(frameBox);
-            });
-        } else {
-            document.getElementById('groupName').innerText = "Data Not Found";
-            document.getElementById('artistName').innerText = "";
+    if (selectedPhotos[index]) {
+        const img = document.createElement('img');
+        img.src = selectedPhotos[index];
+        img.alt = `Selected photo ${index + 1}`;
+        if (slotData.cropX !== undefined) {
+            img.style.objectPosition = `${slotData.cropX * 100}% 50%`;
         }
+        slot.appendChild(img);
     }
-});
 
+    photoLayer.appendChild(slot);
+}
+
+downloadButton.addEventListener('click', downloadResult);
