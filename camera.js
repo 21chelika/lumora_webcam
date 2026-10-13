@@ -23,6 +23,18 @@ function setBackLink() {
     const urlParams = new URLSearchParams(window.location.search);
     const selectedFrame = JSON.parse(localStorage.getItem('lumoraSelectedFrame') || 'null');
     const artistId = urlParams.get('artist') || (selectedFrame && selectedFrame.artistId);
+    const sourcePage = (selectedFrame && selectedFrame.sourcePage) || '';
+
+    if (artistId === 'classic' || sourcePage === 'classic') {
+        backArrow.href = 'classic.html';
+        return;
+    }
+
+    if (artistId && artistId.startsWith('collection-')) {
+        const collectionId = artistId.replace(/^collection-/, '');
+        backArrow.href = `collection-detail.html?id=${encodeURIComponent(collectionId)}`;
+        return;
+    }
 
     backArrow.href = artistId ? `artist-detail.html?id=${artistId}` : 'artist.html';
 }
