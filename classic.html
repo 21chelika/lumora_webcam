@@ -12,38 +12,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">LUMORA</a>
+            </div>
 
-    <!-- Navbar -->
-  <header>
-    <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="artist.html" class="active">home</a></li>
+                <li><a href="about.html">about</a></li>
+                <li><a href="privacy.html">privacy policy</a></li>
+                <li><a href="contact.html">contact</a></li>
+            </ul>
 
-<div class="logo">
-    <a href="index.html">LUMORA</a>
-</div>
-    
-      <ul class="nav-links">
-        <li><a href="artist.html" class="active">home</a></li>
-<li><a href="about.html">about</a></li>
-<li><a href="privacy.html">privacy policy</a></li>
-<li><a href="contact.html">contact</a></li>
-      </ul>
+            <div class="search-box">
+                <input type="text" placeholder="search">
+                <span>⌕</span>
+            </div>
+        </nav>
+    </header>
 
-        <div class="search-box">
-            <input type="text" placeholder="search">
-            <span>⌕</span>
-        </div>
+    <main class="classic-page">
+        <aside class="classic-sidebar">
+            <div class="classic-title-wrap">
+                <a href="collections.html" class="back-arrow" aria-label="Back to artist page">←</a>
+                <div class="classic-copy">
+                    <p class="classic-kicker">CATEGORY OF CLASSIC FRAMES</p>
+                    <h1>CLASSIC FRAMES</h1>
+                </div>
+            </div>
+        </aside>
 
-    </nav>
-</header>
-
-     <main class="detail-container coming-soon-container">
-        <a href="collections.html" class="back-arrow" aria-label="Back to artist page">←</a>
-        <section class="coming-soon" aria-labelledby="coming-soon-title">
-            <p class="coming-soon-label">CLASSIC FRAME</p>
-            <h1 id="coming-soon-title">Coming Soon</h1>
-            <p>Frame cafe sedang dalam tahap persiapan.</p>
+        <section class="classic-gallery-wrap" aria-label="Classic frame gallery">
+            <div id="classicFramesGrid" class="classic-frame-grid"></div>
         </section>
     </main>
 
+    <script src="classic.js"></script>
 </body>
 </html>
