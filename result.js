@@ -32,6 +32,15 @@ const buDidahSlots = [
     { x: 53.7, y: 52.4, w: 40.4, h: 18.6 }
 ];
 
+const creamMusicSlots = [
+    { x: 5.5, y: 6.6, w: 42.2, h: 21.9, radius: '12%', cropX: 0.34 },
+    { x: 52.5, y: 6.6, w: 42.0, h: 19.8, radius: '12%' },
+    { x: 5.5, y: 31.5, w: 42.2, h: 19.5, radius: '12%' },
+    { x: 52.5, y: 31.5, w: 42.0, h: 19.6, radius: '12%' },
+    { x: 6.0, y: 54.4, w: 42.0, h: 19.3, radius: '12%' },
+    { x: 52.5, y: 57.2, w: 42.0, h: 18.3, radius: '12%', cropX: 0.34 }
+];
+
 const yeonjunSlots = {
     bf: [
         { x: 5.2, y: 6.8, w: 42.5, h: 19.0 },
@@ -72,6 +81,9 @@ const isLeesolFrame = selectedFrame && (
 const isBuDidahFrame = selectedFrame && selectedFrame.frameSrc &&
     selectedFrame.frameSrc.includes('budidah');
 
+const isCreamMusicFrame = selectedFrame && selectedFrame.frameSrc &&
+    selectedFrame.frameSrc.includes('cream_music');
+
 const yeonjunFrameType = selectedFrame && selectedFrame.frameSrc
     ? selectedFrame.frameSrc.includes('yj_ride') ? 'ride' : 'bf'
     : null;
@@ -80,11 +92,13 @@ const frameSlots = isBuDidahFrame
     ? buDidahSlots
     : isLeesolFrame
         ? leesolSlots
-        : yeonjunFrameType
-            ? yeonjunSlots[yeonjunFrameType]
-            : selectedFrame && Array.isArray(selectedFrame.slots)
-                ? selectedFrame.slots
-                : defaultSixSlots;
+        : isCreamMusicFrame
+            ? creamMusicSlots
+            : yeonjunFrameType
+                ? yeonjunSlots[yeonjunFrameType]
+                : selectedFrame && Array.isArray(selectedFrame.slots)
+                    ? selectedFrame.slots
+                    : defaultSixSlots;
 
 function loadImage(source) {
     return new Promise((resolve, reject) => {
@@ -100,11 +114,11 @@ function loadImage(source) {
     });
 }
 
-function drawCoverImage(context, image, x, y, width, height) {
+function drawCoverImage(context, image, x, y, width, height, cropX = 0.5) {
     const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
     const sourceWidth = width / scale;
     const sourceHeight = height / scale;
-    const sourceX = (image.naturalWidth - sourceWidth) / 2;
+    const sourceX = (image.naturalWidth - sourceWidth) * cropX;
     const sourceY = (image.naturalHeight - sourceHeight) / 2;
 
     context.drawImage(
@@ -151,7 +165,7 @@ async function downloadResult() {
             context.beginPath();
             context.rect(x, y, width, height);
             context.clip();
-            drawCoverImage(context, photo, x, y, width, height);
+            drawCoverImage(context, photo, x, y, width, height, slotData.cropX);
             context.restore();
         }
 
@@ -184,6 +198,9 @@ for (let index = 0; index < slotCount; index++) {
         const img = document.createElement('img');
         img.src = selectedPhotos[index];
         img.alt = `Selected photo ${index + 1}`;
+        if (slotData.cropX !== undefined) {
+            img.style.objectPosition = `${slotData.cropX * 100}% 50%`;
+        }
         slot.appendChild(img);
     }
 
